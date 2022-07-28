@@ -6,8 +6,7 @@ import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import avatar from '../data/avatar.jpg';
-import { Cart, Chat, Notification, UserProfile } from '.';
+import { Cart, UserProfile } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
@@ -65,22 +64,21 @@ const Navbar = () => {
           >
             <img
               className="rounded-full w-8 h-8"
-              src={avatar}
+              src="https://media.istockphoto.com/vectors/user-avatar-profile-icon-black-vector-illustration-website-or-app-ui-vector-id1314335932?k=20&m=1314335932&s=612x612&w=0&h=iE5A7kpl618-ysPrDlFr1-_x4o5zeGXEJMCe3y6WpFM="
               alt="user-profile"
             />
             <p>
               <span className="text-gray-400 text-14">Hi,</span>{' '}
               <span className="text-gray-400 font-bold ml-1 text-14">
-                Michael
+                Admin
               </span>
             </p>
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
           </div>
         </TooltipComponent>
 
-        {isClicked.cart && (<Cart />)}
-        {isClicked.chat && (<Chat />)}
-        {isClicked.notification && (<Notification />)}
+        {isClicked.cart && (<Cart />)} 
+       
         {isClicked.userProfile && (<UserProfile />)}
       </div>
     </div>

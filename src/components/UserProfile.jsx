@@ -12,7 +12,7 @@ const UserProfile = () => {
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
       <div className="flex justify-between items-center">
-        <p className="font-semibold text-lg dark:text-gray-200">User Profile</p>
+        <p className="font-semibold text-lg dark:text-gray-200">Admin Profile</p>
         <Button
           icon={<MdOutlineCancel />}
           color="rgb(153, 171, 180)"
@@ -24,13 +24,12 @@ const UserProfile = () => {
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         <img
           className="rounded-full h-24 w-24"
-          src={avatar}
+          src="https://media.istockphoto.com/vectors/user-avatar-profile-icon-black-vector-illustration-website-or-app-ui-vector-id1314335932?k=20&m=1314335932&s=612x612&w=0&h=iE5A7kpl618-ysPrDlFr1-_x4o5zeGXEJMCe3y6WpFM="
           alt="user-profile"
         />
         <div>
-          <p className="font-semibold text-xl dark:text-gray-200"> Michael Roberts </p>
           <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@shop.com </p>
+          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> mypham@shop.com </p>
         </div>
       </div>
       <div>
