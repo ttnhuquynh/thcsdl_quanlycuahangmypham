@@ -15,22 +15,22 @@ import {
   Inject,
 } from "@syncfusion/ej2-react-grids";
 
-import {  contextMenuItems, ordersGrid } from "../data/dummy";
+import { ordersData, contextMenuItems, ordersGridUser } from "../data/dummy";
 import { Header } from "../components";
 
-const Orders = () => {
+const Users = () => {
   const editing = { allowDeleting: true, allowEditing: true };
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetch = async () => {
-      const res = await http.get("/orders");
+      const res = await http.get("/users");
       setData(res.data);
     };
     fetch();
   }, []);
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Orders" title="All" />
+      <Header category="" title="Users" />
       <GridComponent
         id="gridcomp"
         dataSource={data}
@@ -42,7 +42,7 @@ const Orders = () => {
         editSettings={editing}
       >
         <ColumnsDirective>
-          {ordersGrid.map((item, index) => (
+          {ordersGridUser.map((item, index) => (
             <ColumnDirective key={index} {...item} />
           ))}
         </ColumnsDirective>
@@ -62,4 +62,4 @@ const Orders = () => {
     </div>
   );
 };
-export default Orders;
+export default Users;
