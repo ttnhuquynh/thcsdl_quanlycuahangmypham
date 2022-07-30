@@ -15,23 +15,24 @@ import {
   Inject,
 } from "@syncfusion/ej2-react-grids";
 
-import { ordersData, contextMenuItems, ProductGrip } from "../data/dummy";
+import {  contextMenuItems, ordersGridOneUser } from "../data/dummy";
 import { Header } from "../components";
+import { useParams } from "react-router-dom";
 
-const Skincare = () => {
-
+const OrdersOfUser = () => {
+    const user_id = useParams().id;
   const editing = { allowDeleting: true, allowEditing: true };
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetch = async () => {
-      const res = await http.get(`/makeup`);
+      const res = await http.get(`/ordersofuser/${user_id}`);
       setData(res.data);
     };
     fetch();
   }, []);
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Product" title="Makeup" />
+      <Header category="Orders" title={"User ID: " + user_id} />
       <GridComponent
         id="gridcomp"
         dataSource={data}
@@ -43,7 +44,7 @@ const Skincare = () => {
         editSettings={editing}
       >
         <ColumnsDirective>
-          {ProductGrip.map((item, index) => (
+          {ordersGridOneUser.map((item, index) => (
             <ColumnDirective key={index} {...item} />
           ))}
         </ColumnsDirective>
@@ -63,4 +64,4 @@ const Skincare = () => {
     </div>
   );
 };
-export default Skincare;
+export default OrdersOfUser;

@@ -6,7 +6,6 @@ import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
 import {
   Ecommerce,
-  
   Calendar,
   Stacked,
   Pyramid,
@@ -28,12 +27,12 @@ import AddProduct from "./pages/AddProduct";
 import DeleteProduct from "./pages/DeleteProduct";
 import Skincare from "./pages/Skincare";
 import Makeup from "./pages/Makeup";
-import SkincareProduct from "./pages/SkincareProduct";
-import MakeupProduct from "./pages/MakeupProduct";
+import EditProduct from "./pages/EditProduct";
 import AddOrder from "./pages/AddOrder";
 import Users from "./pages/Users";
 import Orders from "./pages/Orders";
 import User from "./pages/User";
+import OrdersOfUser from "./pages/OrdersOfUser";
 
 const App = () => {
   const {
@@ -101,31 +100,19 @@ const App = () => {
                 {/* pages  */}
                 <Route path="/skincare" element={<Skincare />} />
                 <Route path="/makeup" element={<Makeup />} />
-                <Route
-                  path="/addskincare"
-                  element={<AddProduct type="skincare" />}
-                />
-                <Route
-                  path="/addmakeup"
-                  element={<AddProduct type="makeup" />}
-                />
-                <Route
-                  path="/deleteskincare"
-                  element={<DeleteProduct type="skincare" />}
-                />
-                <Route
-                  path="/deletemakeup"
-                  element={<DeleteProduct type="makeup" />}
-                />
+                <Route path="/addskincare" element={<AddProduct type="0" />} />
+                <Route path="/addmakeup" element={<AddProduct type="1" />} />
 
-                <Route path="/editskincare/:id" element={<SkincareProduct />} />
-                <Route path="/editmakeup/:id" element={<MakeupProduct />} />
+                <Route path="/deleteproduct" element={<DeleteProduct />} />
+
+                <Route path="/ordersofuser/:id" element={<OrdersOfUser />} />
+
+                <Route path="/editproduct/:id" element={<EditProduct />} />
 
                 <Route path="/add" element={<AddOrder />} />
-                <Route path="/users" element={<Users/>} />
+                <Route path="/users" element={<Users />} />
                 <Route path="/user/:id" element={<User />} />
                 <Route path="/orders" element={<Orders />} />
-
 
                 {/* apps  */}
                 <Route path="/kanban" element={<Kanban />} />

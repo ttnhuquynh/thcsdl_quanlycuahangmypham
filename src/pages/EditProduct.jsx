@@ -2,29 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import http from "../http";
 
-function SkincareProduct() {
+function EditProduct() {
   const id = useParams().id;
 
   const [product, setProduct] = useState({});
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await http.get(`/skincare/${id}`);
+      const res = await http.get(`/product/${id}`);
       setProduct({
-        ten: res.data[0].ten,
-        mota: res.data[0].mota,
-        gia : res.data[0].gia,
-        tenthuonghieu: res.data[0].tenthuonghieu,
-        loaisp: res.data[0].loaisp,
-        inventory_id: res.data[0].inventory_id,
-        anh: res.data[0].anh,
+        name: res.data[0].name,
+        description: res.data[0].description,
+        price : res.data[0].price,
+        brand: res.data[0].brand,
+        category: res.data[0].category,
+        image: res.data[0].image,
         
 
       });
     };
     fetch();
   }, []);
-  console.log(product);
 
   const handleChange = (e, name) => {
     setProduct((prev) => ({
@@ -34,13 +32,13 @@ function SkincareProduct() {
   };
 
   const handleSubmit = async () => {
-    const res = await http.post(`/editskincare/${id}`, product);
+    const res = await http.post(`/editproduct/${id}`, product);
   };
   return (
     <>
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
         <img
-          src={product.anh}
+          src={product.image}
           alt="product image"
           style={{ margin: "0px auto" }}
         />
@@ -53,8 +51,8 @@ function SkincareProduct() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
-              onChange={(e) => handleChange(e.target.value, "ten")}
-              value={product.ten}
+              onChange={(e) => handleChange(e.target.value, "name")}
+              value={product.name}
             />
             <label
               htmlFor="floating_email"
@@ -71,8 +69,8 @@ function SkincareProduct() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
-              onChange={(e) => handleChange(e.target.value, "mota")}
-              value={product.mota}
+              onChange={(e) => handleChange(e.target.value, "description")}
+              value={product.description}
             />
             <label
               htmlFor="floating_password"
@@ -89,8 +87,8 @@ function SkincareProduct() {
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required=""
-              onChange={(e) => handleChange(e.target.value, "gia")}
-              value={product.gia}
+              onChange={(e) => handleChange(e.target.value, "price")}
+              value={product.price}
             />
             <label
               htmlFor="floating_repeat_password"
@@ -108,8 +106,8 @@ function SkincareProduct() {
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required=""
-                onChange={(e) => handleChange(e.target.value, "tenthuonghieu")}
-                value={product.tenthuonghieu}
+                onChange={(e) => handleChange(e.target.value, "brand")}
+                value={product.brand}
               />
               <label
                 htmlFor="floating_first_name"
@@ -126,8 +124,8 @@ function SkincareProduct() {
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required=""
-                value={product.loaisp}
-                onChange={(e) => handleChange(e.target.value, "loaisp")}
+                value={product.category}
+                onChange={(e) => handleChange(e.target.value, "category")}
               />
               <label
                 htmlFor="floating_last_name"
@@ -139,24 +137,7 @@ function SkincareProduct() {
           </div>
           <div className="grid md:grid-cols-2 md:gap-6">
             
-            <div className="relative z-0 mb-6 w-full group">
-              <input
-                type="text"
-                name="floating_company"
-                id="floating_company"
-                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required=""
-                onChange={(e) => handleChange(e.target.value, "inventory_id")}
-                value={product.inventory_id}
-              />
-              <label
-                htmlFor="floating_company"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                Inventory ID
-              </label>
-            </div>
+            
           </div>
           <button
             onClick={handleSubmit}
@@ -171,4 +152,4 @@ function SkincareProduct() {
   );
 }
 
-export default SkincareProduct;
+export default EditProduct;

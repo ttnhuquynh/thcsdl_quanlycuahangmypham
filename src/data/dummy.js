@@ -39,12 +39,12 @@ import product6 from "./product6.jpg";
 import product7 from "./product7.jpg";
 import { Link } from "react-router-dom";
 
-export const gridOrderImageSkincare = (props) => (
+export const gridProduct = (props) => (
   <div>
-    <Link to={"/editskincare/" + props.product_id}>
+    <Link to={"/editproduct/" + props.product_id}>
       <img
         className="rounded-xl h-20 md:ml-3"
-        src={props.anh}
+        src={props.image}
         alt="image-item"
       />
     </Link>
@@ -54,8 +54,15 @@ export const gridOrderImageSkincare = (props) => (
 export const Name = (props) => (
   <div>
     <Link to={"/user/" + props.user_id}>
-      {props.ten}
+      {props.name}
     </Link>
+  </div>
+);
+
+export const Status = (props) => (
+  <div>
+  {props.status == '0' ? <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Chưa thanh toán</button> :
+<button type="button" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">Đã thanh toán</button> }
   </div>
 );
 
@@ -281,19 +288,14 @@ export const areaCustomSeries = [
 
 export const barChartData = [
   [
-    { x: "USA", y: 46 },
+    { x: new Date().toLocaleDateString(), y: 46 },
     { x: "GBR", y: 27 },
     { x: "CHN", y: 26 },
   ],
   [
-    { x: "USA", y: 37 },
+    { x: new Date().toLocaleDateString(), y: 37 },
     { x: "GBR", y: 23 },
     { x: "CHN", y: 18 },
-  ],
-  [
-    { x: "USA", y: 38 },
-    { x: "GBR", y: 17 },
-    { x: "CHN", y: 26 },
   ],
 ];
 
@@ -326,20 +328,7 @@ export const barCustomSeries = [
       },
     },
   },
-  {
-    dataSource: barChartData[2],
-    xName: "x",
-    yName: "y",
-    name: "Bronze",
-    type: "Column",
-    marker: {
-      dataLabel: {
-        visible: true,
-        position: "Top",
-        font: { fontWeight: "600", color: "#ffffff" },
-      },
-    },
-  },
+
 ];
 export const colorMappingData = [
   [
@@ -847,24 +836,24 @@ export const userProfileData = [
   },
 ];
 
-export const ordersGridSkincare = [
+export const ProductGrip = [
   {
-    headerText: "Ảnh",
-    template: gridOrderImageSkincare,
+    headerText: "Image",
+    template: gridProduct,
     textAlign: "Center",
     width: "120",
   },
   {
-    field: "ten",
-    headerText: "Tên",
+    field: "name",
+    headerText: "Name",
     width: "150",
     editType: "dropdownedit",
     textAlign: "Center",
   },
-  { field: "mota", headerText: "Mô tả", width: "150", textAlign: "Center" },
+  { field: "description", headerText: "Description", width: "150", textAlign: "Center" },
   {
-    field: "gia",
-    headerText: "Giá",
+    field: "price",
+    headerText: "Price",
     // format: 'C2',
     textAlign: "Center",
     editType: "numericedit",
@@ -872,8 +861,8 @@ export const ordersGridSkincare = [
   },
   
   {
-    field: "tenthuonghieu",
-    headerText: "Tên thương hiệu",
+    field: "brand",
+    headerText: "Brand",
     width: "150",
     textAlign: "Center",
   },
@@ -886,14 +875,14 @@ export const ordersGridSkincare = [
   },
 
   {
-    field: "loaisp",
-    headerText: "Loại sản phẩm",
+    field: "category",
+    headerText: "Category",
     width: "150",
     textAlign: "Center",
   },
   {
     field: "created_at",
-    headerText: "Ngày tạo",
+    headerText: "Created_at",
     width: "150",
     textAlign: "Center",
   },
@@ -915,7 +904,7 @@ export const ordersGridUser = [
     textAlign: "Center",
     width: "150",
   },
-  { field: "sdt", headerText: "Số điện thoại", width: "150", textAlign: "Center" },
+  { field: "phone", headerText: "Phone Number", width: "150", textAlign: "Center" },
   {
     field: "email",
     headerText: "Email",
@@ -925,46 +914,14 @@ export const ordersGridUser = [
     width: "150",
   },
   {
-    field: "diachi",
-    headerText: "Địa chỉ",
-    // format: 'C2',
+    field: "address",
+    headerText: "Address",
     textAlign: "Center",
     editType: "numericedit",
     width: "150",
   },
-  // {
-  //   headerText: 'Status',
-  //   template: gridOrderStatus,
-  //   field: 'OrderItems',
-  //   textAlign: 'Center',
-  //   width: '120',
-  // },
-  // {
-  //   field: "tenthuonghieu",
-  //   headerText: "Tên thương hiệu",
-  //   width: "150",
-  //   textAlign: "Center",
-  // },
-
-  // {
-  //   field: "product_id",
-  //   headerText: "Product ID",
-  //   width: "120",
-  //   textAlign: "Center",
-  // },
-
-  // {
-  //   field: "loaisp",
-  //   headerText: "Loại sản phẩm",
-  //   width: "150",
-  //   textAlign: "Center",
-  // },
-  // {
-  //   field: "created_at",
-  //   headerText: "Ngày tạo",
-  //   width: "150",
-  //   textAlign: "Center",
-  // },
+  
+  
 ];
 
 export const ordersGrid = [
@@ -989,6 +946,40 @@ export const ordersGrid = [
     headerText: "Created At",
     width: "150",
     textAlign: "Center",
+  },
+
+];
+
+export const ordersGridOneUser = [
+  
+  {
+    field: "order_id",
+    headerText: "Order ID",
+    width: "150",
+    editType: "dropdownedit",
+    textAlign: "Center",
+  },
+  { field: "product_id", headerText: "Product ID", width: "150", textAlign: "Center" },
+  {
+    field: "number",
+    headerText: "Number of Product",
+    textAlign: "Center",
+    editType: "numericedit",
+    width: "150",
+  },
+  {
+    field: "total",
+    headerText: "Total",
+    width: "150",
+    textAlign: "Center",
+  },
+  {
+    
+
+    headerText: "Status",
+    template: Status,
+    textAlign: "Center",
+    width: "150",
   },
 
 ];

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import http from "../http";
 
-function DeleteProduct({type}) {
-  const [product, setProduct] = useState();
+function DeleteProduct() {
+  const [product_id, setProduct] = useState();
 
   const handleChange = (e) => {
     setProduct(e);
@@ -10,7 +10,7 @@ function DeleteProduct({type}) {
 
   const handleSubmit = () => {
     const fetch = async () => {
-      const res = await http.delete(`/delete${type}/${product}`);
+      const res = await http.delete(`/deleteproduct/${product_id}`);
     };
     fetch();
   };

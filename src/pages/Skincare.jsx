@@ -15,15 +15,16 @@ import {
   Inject,
 } from "@syncfusion/ej2-react-grids";
 
-import { ordersData, contextMenuItems, ordersGridSkincare } from "../data/dummy";
+import { ordersData, contextMenuItems, ProductGrip } from "../data/dummy";
 import { Header } from "../components";
 
 const Skincare = () => {
+
   const editing = { allowDeleting: true, allowEditing: true };
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetch = async () => {
-      const res = await http.get("/skincare");
+      const res = await http.get(`/skincare`);
       setData(res.data);
     };
     fetch();
@@ -42,7 +43,7 @@ const Skincare = () => {
         editSettings={editing}
       >
         <ColumnsDirective>
-          {ordersGridSkincare.map((item, index) => (
+          {ProductGrip.map((item, index) => (
             <ColumnDirective key={index} {...item} />
           ))}
         </ColumnsDirective>
