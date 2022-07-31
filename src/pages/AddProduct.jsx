@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import http from "../http";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-
 function AddProduct({ type }) {
-  const [nofication, setNofication] = useState(false);
-
   const navigate = useNavigate();
-
+  const [nofication, setNofication] = useState(false);
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -22,7 +19,7 @@ function AddProduct({ type }) {
     type,
   });
 
-  const page = type == "0" ? "skincare" : "makeup";
+  const page = (type == "0" ? "skincare" : "makeup");
 
   const handleChange = (e, name) => {
     if (name == "number" && e <= 0) {
@@ -37,17 +34,20 @@ function AddProduct({ type }) {
   };
 
 
-  
-  const handleSubmit = async  () => {
-    toast.success("Add new product successfully!", { autoClose: 16000 });
-    const res = await http.post(`/addproduct`, product);
-    
-  };
-  return (
-    
-    <>
-      <ToastContainer />
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await http.post(`/addproduct`, product);
+    if (res.data == "fail") {
+      toast.error("Adding new product failed. \nPlease check again");
+    } else if (res.data == "success") {
+      toast.success("Adding new product successfully");
+      navigate(`/${page}`);
+    }
+  };
+
+  return (
+    <>
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
         <div>
           <h1 style={{ fontSize: "30px", fontWeight: "700" }}>

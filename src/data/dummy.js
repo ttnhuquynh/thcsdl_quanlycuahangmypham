@@ -51,18 +51,30 @@ export const gridProduct = (props) => (
   </div>
 );
 
-export const Name = (props) => (
-  <div>
+export const Name = (props) => 
+  (<div >
     <Link to={"/user/" + props.user_id}>
-      {props.name}
+    {props.name}
     </Link>
-  </div>
-);
+  </div>);
 
 export const Status = (props) => (
   <div>
-  {props.status == '0' ? <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Chưa thanh toán</button> :
-<button type="button" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900">Đã thanh toán</button> }
+    {props.status == "0" ? (
+      <button
+        type="button"
+        className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+      >
+        Chưa thanh toán
+      </button>
+    ) : (
+      <button
+        type="button"
+        className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900"
+      >
+        Đã thanh toán
+      </button>
+    )}
   </div>
 );
 
@@ -328,7 +340,6 @@ export const barCustomSeries = [
       },
     },
   },
-
 ];
 export const colorMappingData = [
   [
@@ -850,7 +861,12 @@ export const ProductGrip = [
     editType: "dropdownedit",
     textAlign: "Center",
   },
-  { field: "description", headerText: "Description", width: "150", textAlign: "Center" },
+  {
+    field: "description",
+    headerText: "Description",
+    width: "150",
+    textAlign: "Center",
+  },
   {
     field: "price",
     headerText: "Price",
@@ -859,7 +875,7 @@ export const ProductGrip = [
     editType: "numericedit",
     width: "150",
   },
-  
+
   {
     field: "brand",
     headerText: "Brand",
@@ -897,14 +913,17 @@ export const ordersGridUser = [
     textAlign: "Center",
   },
   {
-    
-
     headerText: "Tên",
     template: Name,
     textAlign: "Center",
     width: "150",
   },
-  { field: "phone", headerText: "Phone Number", width: "150", textAlign: "Center" },
+  {
+    field: "phone",
+    headerText: "Phone Number",
+    width: "150",
+    textAlign: "Center",
+  },
   {
     field: "email",
     headerText: "Email",
@@ -920,12 +939,9 @@ export const ordersGridUser = [
     editType: "numericedit",
     width: "150",
   },
-  
-  
 ];
 
 export const ordersGrid = [
-  
   {
     field: "order_id",
     headerText: "Order ID",
@@ -933,7 +949,12 @@ export const ordersGrid = [
     editType: "dropdownedit",
     textAlign: "Center",
   },
-  { field: "product_id", headerText: "Product ID", width: "150", textAlign: "Center" },
+  {
+    field: "product_id",
+    headerText: "Product ID",
+    width: "150",
+    textAlign: "Center",
+  },
   {
     field: "user_id",
     headerText: "User ID",
@@ -947,11 +968,9 @@ export const ordersGrid = [
     width: "150",
     textAlign: "Center",
   },
-
 ];
 
 export const ordersGridOneUser = [
-  
   {
     field: "order_id",
     headerText: "Order ID",
@@ -959,7 +978,12 @@ export const ordersGridOneUser = [
     editType: "dropdownedit",
     textAlign: "Center",
   },
-  { field: "product_id", headerText: "Product ID", width: "150", textAlign: "Center" },
+  {
+    field: "product_id",
+    headerText: "Product ID",
+    width: "150",
+    textAlign: "Center",
+  },
   {
     field: "number",
     headerText: "Number of Product",
@@ -974,14 +998,11 @@ export const ordersGridOneUser = [
     textAlign: "Center",
   },
   {
-    
-
     headerText: "Status",
     template: Status,
     textAlign: "Center",
     width: "150",
   },
-
 ];
 
 export const ordersGridMakeup = [

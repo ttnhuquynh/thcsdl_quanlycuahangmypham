@@ -1,27 +1,39 @@
 import React, { useState } from "react";
 import http from "../http";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function AddOrder() {
-    const [order, setOrder] = useState({
-    });
-    const handleChange = (e, name) => {
-        setOrder(prev => ({
-            ...prev, 
-            [name]:e
-        }))
+  const navigate = useNavigate();
+  const [order, setOrder] = useState({});
+  const handleChange = (e, name) => {
+    setOrder((prev) => ({
+      ...prev,
+      [name]: e,
+    }));
+  };
 
+  const [check, setCheck] = useState({
+    user: 0,
+    product: 0,
+    number: 0,
+  });
+  console.log(order);
+  const handleSubmit = async (e) => {
+    const res = await http.post("/addorder", order);
+    if (res.data == "error") {
+      toast.error("Adding new order failed. \nPlease check again");
+    } else {
+      toast.success("Adding new order successfully");
+      navigate("/orders");
     }
-    console.log(order);
-    const handleSubmit = async() => {
-        const res = http.post('/addorder', order);
-    }
+  };
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <div>
-        <h1 style={{ fontSize: "30px", fontWeight: "700" }}>
-          New Order
-        </h1>
+        <h1 style={{ fontSize: "30px", fontWeight: "700" }}>New Order</h1>
         <form>
           <div className="mb-6">
             <label
@@ -35,7 +47,7 @@ function AddOrder() {
               id="name"
               name="use_id"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
+              required
               onChange={(e) => handleChange(e.target.value, "user_id")}
             />
           </div>
@@ -51,7 +63,7 @@ function AddOrder() {
               id="desciption"
               name="product_id"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
+              required
               onChange={(e) => handleChange(e.target.value, "product_id")}
             />
           </div>
@@ -64,23 +76,14 @@ function AddOrder() {
               Number of products
             </label>
             <input
-              type="text"
+              type="number"
               id="desciption"
               name="product_id"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
+              required
               onChange={(e) => handleChange(e.target.value, "number")}
             />
           </div>
-          
-          
-          
-
-          
-
-         
-
-          
 
           <button
             onClick={handleSubmit}

@@ -1,18 +1,55 @@
 import React, { useState } from "react";
 import http from "../http";
+import swal from 'sweetalert';
+import { useNavigate } from "react-router-dom";
+
 
 function DeleteProduct() {
   const [product_id, setProduct] = useState();
+
+   
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setProduct(e);
   };
 
-  const handleSubmit = () => {
-    const fetch = async () => {
-      const res = await http.delete(`/deleteproduct/${product_id}`);
-    };
-    fetch();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const resProduct = await http.get(`/product/${product_id}`);
+    const product = resProduct.data[0];
+    if (product){
+      swal({
+        title: `${product?.name}`,
+        text: "Once deleted, you will not be able to recover this product!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          const res = http.delete(`/deleteproduct/${product_id}`);
+          swal("Poof! Your product has been deleted!", {
+            icon: "success",
+          });
+          navigate()
+  
+        } else {
+          swal("Your product is safe!");
+        }
+      });
+    }
+    else {
+      swal("None of the products have this id!", {
+        icon: "error"
+        ,
+        buttons: false,
+        timer: 3000,
+      });
+    }
+    
   };
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
