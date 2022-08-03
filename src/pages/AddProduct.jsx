@@ -19,10 +19,10 @@ function AddProduct({ type }) {
     type,
   });
 
-  const page = (type == "0" ? "skincare" : "makeup");
+  const page = type == "0" ? "skincare" : "makeup";
 
   const handleChange = (e, name) => {
-    if (name == "number" && e <= 0) {
+    if (name == "number" && e < 0) {
       setNofication(true);
     } else {
       setNofication(false);
@@ -33,10 +33,12 @@ function AddProduct({ type }) {
     }));
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (product.number <= 0) {
+      setNofication(true);
+      return 0;
+    }
     const res = await http.post(`/addproduct`, product);
     if (res.data == "fail") {
       toast.error("Adding new product failed. \nPlease check again");

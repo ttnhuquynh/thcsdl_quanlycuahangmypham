@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-
-
 const Header = ({ category, title }) => (
-
   <>
     <div className="mb-10">
       <p className="text-lg text-gray-400">{category}</p>
@@ -13,7 +9,7 @@ const Header = ({ category, title }) => (
         {title}
       </p>
     </div>
-    {(category == "Orders" || title == 'Users')? (
+    {category == "Orders" || title == "Users"  || category == "Sold out"  || title == "Top Product by Category" ? (
       <></>
     ) : (
       <>
@@ -35,6 +31,7 @@ const Header = ({ category, title }) => (
         </Link>
       </>
     )}
+    
   </>
 );
 

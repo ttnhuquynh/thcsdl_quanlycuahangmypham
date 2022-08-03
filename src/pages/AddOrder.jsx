@@ -19,12 +19,23 @@ function AddOrder() {
     product: 0,
     number: 0,
   });
-  console.log(order);
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const res = await http.post("/addorder", order);
+    console.log(res.data);
     if (res.data == "error") {
       toast.error("Adding new order failed. \nPlease check again");
-    } else {
+    }
+    else if(res.data == "no user")  {
+      toast.error("None of users have this id", {autoClose: 10000});
+    }
+    else if(res.data == "no product")  {
+      toast.error("None of the product have this id", {autoClose: 10000});
+    }
+    else if(res.data == "no number")  {
+      toast.error("Don't have enough number of this product", {autoClose: 10000});
+    }
+     else if(res.data == "success")  {
       toast.success("Adding new order successfully");
       navigate("/orders");
     }

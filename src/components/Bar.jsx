@@ -59,21 +59,21 @@ function Bar() {
   useEffect(() => {
     const fetch = async () => {
       const res = await http.get("/paymentsyesterday");
-      setData((prev) => ({ ...prev, ySalesYesterday: res.data[0].total }));
+      setData((prev) => ({ ...prev, ySalesYesterday: res.data[0].total/1000000 }));
     };
     fetch();
   }, []);
   useEffect(() => {
     const fetch = async () => {
       const res = await http.get("/paymentstoday");
-      setData((prev) => ({ ...prev, ySalesToday: res.data[0].total/10000000 }));
+      setData((prev) => ({ ...prev, ySalesToday: res.data[0].total/100000000 }));
     };
     fetch();
   }, []);
   useEffect(() => {
     const fetch = async () => {
       const res = await http.get("/paymentsthreedayago");
-      setData((prev) => ({ ...prev, ySalesThreeDayAgo: res.data[0].total }));
+      setData((prev) => ({ ...prev, ySalesThreeDayAgo: res.data[0].total/1000000 }));
     };
     fetch();
   }, []);
@@ -135,7 +135,7 @@ function Bar() {
   return (
     <div>
       <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
-        <ChartsHeader category="" title="Thống kê $" />
+        <ChartsHeader category="" title="" />
         <div className=" w-full">
           <ChartComponent
             id="charts"

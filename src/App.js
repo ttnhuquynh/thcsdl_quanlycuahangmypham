@@ -4,36 +4,24 @@ import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { ToastContainer } from "react-toastify";
 
+import "./App.css";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
+
 import {
   Ecommerce,
-  Calendar,
-  Stacked,
-  Pyramid,
-  Kanban,
-  Line,
-  Area,
-  Bar,
-  Pie,
-  Financial,
-  ColorPicker,
-  ColorMapping,
-  Editor,
+  AddProduct,
+  DeleteProduct,
+  Skincare,
+  Makeup,
+  EditProduct,
+  AddOrder,
+  Users,
+  Orders,
+  User,
+  OrdersOfUser,
 } from "./pages";
-import "./App.css";
 
 import { useStateContext } from "./contexts/ContextProvider";
-
-import AddProduct from "./pages/AddProduct";
-import DeleteProduct from "./pages/DeleteProduct";
-import Skincare from "./pages/Skincare";
-import Makeup from "./pages/Makeup";
-import EditProduct from "./pages/EditProduct";
-import AddOrder from "./pages/AddOrder";
-import Users from "./pages/Users";
-import Orders from "./pages/Orders";
-import User from "./pages/User";
-import OrdersOfUser from "./pages/OrdersOfUser";
 
 const App = () => {
   const {
@@ -59,7 +47,7 @@ const App = () => {
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
-        <ToastContainer autoClose={4000} style={{ fontSize: "16px" }} />
+          <ToastContainer autoClose={4000} style={{ fontSize: "16px" }} />
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
             <TooltipComponent content="Settings" position="Top">
               <button
@@ -99,38 +87,22 @@ const App = () => {
                 <Route path="/" element={<Ecommerce />} />
                 <Route path="/ecommerce" element={<Ecommerce />} />
 
-                {/* pages  */}
+                {/* product  */}
                 <Route path="/skincare" element={<Skincare />} />
                 <Route path="/makeup" element={<Makeup />} />
                 <Route path="/addskincare" element={<AddProduct type="0" />} />
                 <Route path="/addmakeup" element={<AddProduct type="1" />} />
-
                 <Route path="/deleteproduct" element={<DeleteProduct />} />
-
-                <Route path="/ordersofuser/:id" element={<OrdersOfUser />} />
-
                 <Route path="/editproduct/:id" element={<EditProduct />} />
 
+                {/* order */}
                 <Route path="/add" element={<AddOrder />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/user/:id" element={<User />} />
                 <Route path="/orders" element={<Orders />} />
 
-                {/* apps  */}
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/color-picker" element={<ColorPicker />} />
-
-                {/* charts  */}
-                <Route path="/line" element={<Line />} />
-                <Route path="/area" element={<Area />} />
-                <Route path="/bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
-                <Route path="/financial" element={<Financial />} />
-                <Route path="/color-mapping" element={<ColorMapping />} />
-                <Route path="/pyramid" element={<Pyramid />} />
-                <Route path="/stacked" element={<Stacked />} />
+                {/* user */}
+                <Route path="/users" element={<Users />} />
+                <Route path="/user/:id" element={<User />} />
+                <Route path="/ordersofuser/:id" element={<OrdersOfUser />} />
               </Routes>
             </div>
             <Footer />
@@ -140,5 +112,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;

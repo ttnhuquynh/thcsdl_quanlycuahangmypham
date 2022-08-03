@@ -4,9 +4,17 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { Button } from '.';
 import { userProfileData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
+import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
+  const navigate = useNavigate()
   const { currentColor } = useStateContext();
+  const handleLogout = () => {
+    // localStorage.removeItem('auth');
+    // navigate('/login')
+    console.log('k okkk');
+    
+  }
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
